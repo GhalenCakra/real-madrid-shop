@@ -91,3 +91,48 @@ Django sering dipilih sebagai awal pembelajaran pengembangan perangkat lunak kar
 # 6. Apakah ada feedback untuk asisten dosen tutorial 1 yang telah kamu kerjakan sebelumnya?
 Tutorial 1 sangat membantu sekali untuk memahami konsep dasar MVT. secara keseluruhan, penyampaian materi cukup jelas dan terstruktur."
 
+# Tugas 3
+# 1. Mengapa kita perlu data delivery?
+Data delivery diperlukan dalam pengembangan platform karena memungkinkan pertukaran informasi antar sistem atau antar lapisan aplikasi secara efisien dan terstruktur. Dengan adanya data delivery, data yang tersimpan di server dapat dikirimkan ke klien, aplikasi mobile, atau antarmuka web dengan format standar, sehingga interoperabilitas dan konsistensi data dapat terjaga.
+
+# 2. Mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Baik XML maupun JSON memiliki keunggulan masing-masing, namun JSON lebih sering digunakan dalam pengembangan aplikasi modern. JSON lebih ringkas dan memiliki sintaks yang lebih sederhana dibandingkan XML, sehingga memudahkan proses parsing dan integrasi dengan berbagai bahasa pemrograman. Selain itu, JSON merupakan format native pada JavaScript, sehingga kompatibilitas dengan aplikasi web berbasis JavaScript lebih baik dibandingkan XML. Hal ini menjadikan JSON lebih efisien dan populer dalam praktik pengembangan saat ini.
+
+# 3. Fungsi dari method is_valid() pada form Django
+Method is_valid() digunakan untuk memeriksa apakah data yang diinputkan oleh pengguna sesuai dengan aturan validasi yang telah didefinisikan pada form. Fungsi ini memastikan bahwa hanya data yang valid yang dapat disimpan ke dalam basis data, sehingga integritas dan konsistensi data tetap terjaga.
+
+# 4. Mengapa kita membutuhkan csrf_token pada form Django?
+Token CSRF (Cross-Site Request Forgery) digunakan untuk melindungi aplikasi dari serangan CSRF, yaitu serangan yang memanfaatkan sesi pengguna untuk melakukan aksi tanpa sepengetahuan pengguna. Dengan menambahkan csrf_token pada form, server dapat memverifikasi bahwa request yang diterima benar-benar berasal dari pengguna yang sah. Tanpa token ini, aplikasi berisiko menjadi target serangan yang dapat mengeksploitasi hak akses pengguna.
+
+# 5. Implementasi checklist secara step-by-step
+Implementasi dilakukan secara bertahap dengan prosedur sebagai berikut:
+
+ 1. Membuat model untuk mendefinisikan struktur data yang akan digunakan.
+
+ 2. Membuat form yang terkait dengan model untuk menerima input dari pengguna.
+
+ 3. Membuat views untuk menangani logika bisnis, termasuk menampilkan data, menerima input form, dan menyajikan data dalam format XML atau JSON.
+
+ 4. Membuat template HTML untuk menampilkan halaman list, form, dan detail objek.
+
+ 5. Menambahkan routing URL untuk setiap view agar dapat diakses melalui browser atau API.
+
+ 6. Menguji seluruh fungsi menggunakan server lokal dan Postman untuk memastikan data dapat dikirim dan diterima sesuai dengan format yang ditentukan.
+
+7. Melakukan dokumentasi dan penulisan laporan pada README.md untuk mendeskripsikan implementasi dan hasil uji.
+
+# 6. feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
+sudah cukup bagus dan jelas.
+
+# Hasil screenshot dari hasil akses URL pada Postman
+## XML Semua Product
+![Response XML](images/XML.png)
+
+## JSON Semua Product
+![Response JSON](images/JSON.png)
+
+## XML by ID
+![Response XML by ID](images/XML-by-ID.png)
+
+## JSON by ID
+![Response JSON by ID](images/JSON-by-ID.png)
