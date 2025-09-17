@@ -121,6 +121,9 @@ Implementasi dilakukan secara bertahap dengan prosedur sebagai berikut:
 
 7. Melakukan dokumentasi dan penulisan laporan pada README.md untuk mendeskripsikan implementasi dan hasil uji.
 
+# 6. feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
+sudah cukup bagus dan jelas.
+
 # Hasil screenshot dari hasil akses URL pada Postman
 ## XML Semua Product
 ![Response XML](images/XML.png)
