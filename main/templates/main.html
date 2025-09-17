@@ -28,9 +28,9 @@
     {% if product.is_product_hot %} | <b>Hot</b>{% endif %} | <i>{{ product.created_at|date:"d M Y H:i" }}</i> 
     | Views: {{ product.views }}</p>
 
-  {% if product.thumbnail %}
+  <!-- {% if product.thumbnail %}
   <img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100"><br />
-  {% endif %}
+  {% endif %} -->
 
   <p>{{ product.description|truncatewords:25 }}...</p>
   <p>Price: {{ product.price|truncatewords:25 }}</p>
