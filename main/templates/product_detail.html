@@ -22,6 +22,12 @@
 
 <p>{{ product.description }}</p>
 
+{% if product.user %}
+    <p>Author: {{ product.user.username }}</p>
+{% else %}
+    <p>Author: Anonymous</p>
+{% endif %}
+
 <hr>
 <p><strong>Price:</strong> {{ product.price }}</p>
 <p><strong>Stock:</strong> {{ product.stock }}</p>
