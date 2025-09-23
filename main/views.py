@@ -23,9 +23,9 @@ def show_main(request):
         product_list = Product.objects.filter(user=request.user)
 
     context = {
-        'npm': '240123456',
+        'npm': '2406437306',
         'name': request.user.username,
-        'class': 'PBP A',
+        'class': 'PBP B',
         'product_list': product_list,
         'last_login': request.COOKIES.get('last_login', 'Never')
     }
