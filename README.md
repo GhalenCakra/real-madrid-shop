@@ -7,7 +7,6 @@ Saya mengimplementasikan checklist dengan langkah-langkah berikut. Pertama, saya
 
 # 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![Bagan Alur](images/bagan-alur.png)
-ChatGPT said:
 
 
 1. Client (Browser)
@@ -175,5 +174,19 @@ Terakhir, saya menghubungkan model News dengan User. Di models.py saya menambahk
 
 Setelah semua langkah selesai, saya menjalankan server Django dan menguji proses pendaftaran, login, logout, serta pembatasan akses. Hasilnya, setiap akun hanya dapat melihat berita yang dibuat sendiri, cookie last_login tercatat dan terhapus sesuai alur.
 
+# 1 Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Pertama, saya mempelajari urutan prioritas CSS selector untuk memastikan tampilan halaman web sesuai dengan desain yang diinginkan. Dalam CSS, prioritas selector ditentukan berdasarkan spesifisitas dan urutan penulisan. Selector inline memiliki prioritas tertinggi, diikuti oleh ID selector (#id), class, attribute, dan pseudo-class selector (.class, [attribute], :hover), kemudian selector tipe elemen (div, p, h1). Jika terjadi konflik, selector yang ditulis terakhir akan diterapkan. Saya memahami hal ini untuk mencegah konflik styling ketika menggunakan banyak class atau framework CSS sekaligus.
 
+# 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+Responsive design menjadi sangat penting karena pengguna mengakses aplikasi web melalui berbagai perangkat dengan ukuran layar yang berbeda, mulai dari smartphone, tablet, hingga desktop. Tanpa responsive design, tampilan web bisa pecah atau sulit digunakan di perangkat tertentu. Contohnya, Google Drive sudah menerapkan responsive design karena layout dan navigasinya tetap nyaman di ponsel dan desktop. Sebaliknya, beberapa situs lama seperti versi desktop Yahoo Mail klasik kurang responsif, sehingga navigasinya sulit diakses di smartphone. Konsep ini penting untuk meningkatkan pengalaman pengguna dan menjaga konsistensi tampilan di berbagai device.
 
+# 3.  Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin adalah ruang di luar elemen yang memisahkan elemen dari elemen lain. Border adalah garis tepi yang mengelilingi konten, sedangkan padding adalah ruang antara konten elemen dengan border-nya. Di Bootstrap, margin dan padding bisa langsung diterapkan menggunakan utility class seperti m-3, p-4, mt-2, px-5, sedangkan border menggunakan border atau border-primary. Dengan pemahaman ini, saya dapat mengatur jarak antar elemen dan proporsi layout dengan lebih mudah tanpa menulis CSS custom terlalu banyak.
+
+# 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+lexbox digunakan untuk membuat elemen sebaris atau kolom yang fleksibel, misalnya navbar atau card produk. Grid system Bootstrap memungkinkan saya membuat layout responsif dengan membagi halaman menjadi baris (row) dan kolom (col), sehingga konten dapat menyesuaikan ukuran layar secara otomatis.
+
+# 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+Dalam implementasinya secara step-by-step, pertama saya membuat virtual environment dan menginstal Django. Setelah itu, saya mengaktifkan django.contrib.auth dan django.contrib.sessions untuk fitur autentikasi dan manajemen sesi. Saya membuat model untuk produk dengan field yang sesuai dan menambahkan UUID sebagai primary key untuk keamanan. Selanjutnya, saya membuat template HTML untuk halaman login, register, daftar produk, detail produk, tambah produk, dan edit produk.
+
+Saya menambahkan styling dan layout menggunakan Bootstrap, memanfaatkan class utility untuk margin, padding, border, serta grid system untuk layout responsif. Saya juga memanfaatkan komponen Bootstrap seperti card, form-control, dan btn untuk konsistensi tampilan dan interaksi. Terakhir, saya melakukan pengujian pada berbagai ukuran layar untuk memastikan semua halaman tetap responsif dan user-friendly.

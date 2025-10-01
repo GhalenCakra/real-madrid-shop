@@ -1,32 +1,56 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block meta %}
-<title>Login</title>
+<title>Login - Real Madrid Shop</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-  <h1>Login</h1>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-lg">
+      <div class="card-body p-4">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 fw-bold">Sign In</h1>
+          <p class="text-muted">Welcome back to Real Madrid Shop</p>
+        </div>
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
+        <!-- Errors -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+              <p class="mb-0">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field|add_class:"form-control" }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+
+          <div class="text-center mt-3">
+              <small class="text-muted">
+                 Belum punya akun? 
+              <a href="{% url 'main:register' %}">Register</a>
+              </small>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
 </div>
-
-{% endblock content %}
+{% endblock %}

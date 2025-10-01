@@ -54,11 +54,6 @@ def show_product(request, id):
 
     return render(request, "product_detail.html", {"product": product})
 
-def delete_product(request, id):
-    product = get_object_or_404(Product, id=id)
-    product.delete()
-    return redirect('main:show_main') 
-
 def show_xml(request):
     products = Product.objects.all()
     xml_data = serializers.serialize("xml", products)
@@ -117,3 +112,21 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    form = ProductForm(request.POST or None, instance=product)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
