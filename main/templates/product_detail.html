@@ -1,31 +1,64 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ product.title }} - Real Madrid Shop
+{% endblock title %}
+
 {% block content %}
-<p>
-  <a href="{% url 'main:show_main' %}">
-    <button>← Back to Product List</button>
-  </a>
-</p>
+<div class="container my-5">
+    <!-- Back Navigation -->
+    <div class="mb-4">
+        <a href="{% url 'main:show_main' %}" class="btn btn-outline-secondary btn-sm">
+            ← Back to Products
+        </a>
+    </div>
 
-<h1>{{ product.name }}</h1>
+    <!-- Product Detail Card -->
+    <div class="card shadow-sm">
+        <!-- Image -->
+        {% if product.thumbnail %}
+            <img src="{{ product.thumbnail }}" class="card-img-top" alt="{{ product.title }}">
+        {% endif %}
 
-<p>
-  <b>{{ product.get_category_display }}</b>
-  {% if product.is_featured %}| <b>Featured</b>{% endif %}
-  | <i>{{ product.created_at|date:"d M Y, H:i" }}</i>
-  | Views: {{ product.views }}
-</p>
+        <div class="card-body">
+            <!-- Category + Tags -->
+            <div class="mb-3">
+                <span class="badge bg-success">{{ product.get_category_display }}</span>
+                {% if product.is_featured %}
+                    <span class="badge bg-warning text-dark">Featured</span>
+                {% endif %}
+                {% if product.is_product_best %}
+                    <span class="badge bg-danger">Best</span>
+                {% endif %}
+            </div>
 
-{% if product.thumbnail %}
-  <img src="{{ product.thumbnail }}" alt="Product thumbnail" width="300">
-  <br><br>
-{% endif %}
+            <!-- Title -->
+            <h1 class="card-title">{{ product.title }}</h1>
 
-<p>{{ product.description }}</p>
+            <!-- Meta info -->
+            <p class="text-muted small mb-2">
+                <time datetime="{{ product.created_at|date:'c' }}">
+                    {{ product.created_at|date:"M j, Y g:i A" }}
+                </time> · 
+                {{ product.views }} views
+            </p>
 
-<hr>
-<p><strong>Price:</strong> {{ product.price }}</p>
-<p><strong>Stock:</strong> {{ product.stock }}</p>
-<p><strong>Rating:</strong> {{ product.rating }}</p>
-<p><strong>Brand:</strong> {{ product.brand }}</p>
+            <!-- Content -->
+            <p class="card-text">{{ product.content }}</p>
+        </div>
 
+        <!-- Author -->
+        <div class="card-footer bg-light">
+            <small class="text-muted">
+                Author: 
+                {% if product.user %}
+                    {{ product.user.username }}
+                {% else %}
+                    Anonymous
+                {% endif %}
+            </small>
+        </div>
+    </div>
+</div>
 {% endblock content %}
