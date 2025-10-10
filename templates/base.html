@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}My Site{% endblock title %}</title>
+    <title>{% block title %}Madrid-G Shop{% endblock title %}</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- DOMPurify -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+
 
     {% load static %}
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
+        <div class="container">
             <!-- Brand -->
-            <a class="navbar-brand" href="{% url 'main:show_main' %}">Real Madrid Shop</a>
+            <a class="navbar-brand fw-bold" href="{% url 'main:landing' %}">
+                <i class="bi bi-shop me-2"></i>Madrid-G Shop
+            </a>
 
             <!-- Hamburger (mobile) -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -25,30 +34,50 @@
 
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                <!-- LEFT SIDE: only show when logged in -->
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:show_main' %}">Home</a>
+                        <a class="nav-link" href="{% url 'main:landing' %}">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:create_product' %}">Add Product</a>
+                        <a class="nav-link" href="{% url 'main:show_main' %}">
+                            <i class="bi bi-grid me-1"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:create_product' %}">
+                            <i class="bi bi-plus-circle me-1"></i>Add Product
+                        </a>
                     </li>
                 </ul>
+                {% endif %}
 
-                <!-- Right Side (Auth links) -->
+                <!-- RIGHT SIDE: Auth links -->
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Hello, {{ user.username }}</a>
+                            <span class="navbar-text text-white me-3">
+                                <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                            </span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'main:logout' %}">
+                                <i class="bi bi-box-arrow-right me-1"></i>Logout
+                            </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'main:login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'main:login' %}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'main:register' %}">Register</a>
+                            <a class="nav-link" href="{% url 'main:register' %}">
+                                <i class="bi bi-person-plus me-1"></i>Register
+                            </a>
                         </li>
                     {% endif %}
                 </ul>
@@ -57,11 +86,31 @@
     </nav>
 
     <!-- Main content -->
-    <div class="container mt-4">
+    <main>
         {% block content %}{% endblock content %}
-    </div>
+    </main>
 
-    <!-- Bootstrap JS  -->
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-shop me-2"></i>Madrid-G Shop</h5>
+                    <p class="mb-0">Official merchandise store for true Madridistas</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">&copy; 2025 Real Madrid Shop. All rights reserved.</p>
+                    <p class="mb-0 small">NPM: 2406437306 - Ghalen - PBP B</p>
+                </div>
+            </div>
+    </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% include 'toast.html' %}
+    {% include 'modal.html' %}
+    
 </body>
 </html>

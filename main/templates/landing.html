@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block title %}
-Real Madrid Shop - Official Merchandise
+Madrid-G Shop - Official Merchandise
 {% endblock title %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="background: linear-gradient(rgba(0, 82, 159, 0.8), rgba(0, 82, 159, 0.9)), url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; color: white; padding: 100px 0; margin-top: -2rem;">
+<section class="hero-section" style="background: linear-gradient(rgba(0, 98, 159, 0.644), rgba(141, 0, 159, 0)), url('https://assets.realmadrid.com/is/image/realmadrid/ND-COPAS-DE-EUROPA-DECIMOQUINTA-SALA-DE-JUNTAS_2PC9815?$Mobile$&fit=wrap'); background-size: cover; background-position: center; color: white; padding: 100px 0; margin-top: -2rem;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">Official Real Madrid Merchandise</h1>
+                <h1 class="display-4 fw-bold mb-4">Official Madrid-G Merchandise</h1>
                 <p class="lead mb-4">Wear the colors of champions. Authentic jerseys, apparel and collectibles for true Madridistas.</p>
                 <div class="d-flex gap-3 flex-wrap">
                     {% if user.is_authenticated %}
@@ -37,7 +37,6 @@ Real Madrid Shop - Official Merchandise
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <h5 class="mb-1 text-primary">Welcome, {{ user.username }}!</h5>
-                    <p class="mb-0 text-muted">NPM: {{ npm|default:"2406437306" }} | Class: {{ class|default:"PBP B" }}</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <small class="text-muted">Last login: {{ last_login }}</small>
@@ -59,7 +58,7 @@ Real Madrid Shop - Official Merchandise
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="display-5 fw-bold text-primary mb-3">Featured Products</h2>
-            <p class="lead text-muted">Discover our most popular Real Madrid merchandise</p>
+            <p class="lead text-muted">Discover our most popular Madrid-G merchandise</p>
         </div>
 
         {% if featured_products %}
@@ -131,41 +130,59 @@ Real Madrid Shop - Official Merchandise
         <div class="text-center mb-5">
             <h2 class="display-5 fw-bold text-primary mb-3">Shop by Category</h2>
         </div>
-        <div class="row g-4">
-            <div class="col-md-3 col-6">
-                <div class="category-card text-center p-4 bg-white rounded shadow-sm h-100">
-                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-tshirt text-white" style="font-size: 2rem;"></i>
+        <div class="row g-4 justify-content-center">
+            <!-- Jersey -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="category-card text-center p-3 bg-white rounded shadow-sm h-100">
+                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="bi bi-cart2 text-white" style="font-size: 1.8rem;"></i>
                     </div>
-                    <h5>Jerseys</h5>
-                    <p class="text-muted small">Home, Away & Third Kits</p>
+                    <h6 class="fw-bold">Jersey</h6>
+                    <p class="text-muted small mb-0">Home, Away & Third Kits</p>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
-                <div class="category-card text-center p-4 bg-white rounded shadow-sm h-100">
-                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-bag text-white" style="font-size: 2rem;"></i>
+            
+            <!-- Shoes -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="category-card text-center p-3 bg-white rounded shadow-sm h-100">
+                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="bi bi-shop text-white" style="font-size: 1.8rem;"></i>
                     </div>
-                    <h5>Training Wear</h5>
-                    <p class="text-muted small">Jackets & Training Gear</p>
+                    <h6 class="fw-bold">Shoes</h6>
+                    <p class="text-muted small mb-0">Football Boots & Sneakers</p>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
-                <div class="category-card text-center p-4 bg-white rounded shadow-sm h-100">
-                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-capsule text-white" style="font-size: 2rem;"></i>
+            
+            <!-- Accessory -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="category-card text-center p-3 bg-white rounded shadow-sm h-100">
+                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="bi bi-watch text-white" style="font-size: 1.8rem;"></i>
                     </div>
-                    <h5>Accessories</h5>
-                    <p class="text-muted small">Caps, Scarves & More</p>
+                    <h6 class="fw-bold">Accessory</h6>
+                    <p class="text-muted small mb-0">Caps, Watches & More</p>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
-                <div class="category-card text-center p-4 bg-white rounded shadow-sm h-100">
-                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-trophy text-white" style="font-size: 2rem;"></i>
+            
+            <!-- Merchandise -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="category-card text-center p-3 bg-white rounded shadow-sm h-100">
+                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="bi bi-gift text-white" style="font-size: 1.8rem;"></i>
                     </div>
-                    <h5>Collectibles</h5>
-                    <p class="text-muted small">Limited Edition Items</p>
+                    <h6 class="fw-bold">Merchandise</h6>
+                    <p class="text-muted small mb-0">Official Club Merchandise</p>
+                </div>
+            </div>
+            
+            <!-- Ball -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="category-card text-center p-3 bg-white rounded shadow-sm h-100">
+                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="bi bi-dribbble text-white" style="font-size: 1.8rem;"></i>
+                    </div>
+                    <h6 class="fw-bold">Ball</h6>
+                    <p class="text-muted small mb-0">Official Match Balls</p>
                 </div>
             </div>
         </div>
@@ -181,8 +198,8 @@ Real Madrid Shop - Official Merchandise
                 <p class="text-muted">Products</p>
             </div>
             <div class="col-md-3 col-6 mb-4">
-                <h3 class="text-primary fw-bold">10K+</h3>
-                <p class="text-muted">Happy Customers</p>
+                <h3 class="text-primary fw-bold">100%</h3>
+                <p class="text-muted">Gak Nyesel</p>
             </div>
             <div class="col-md-3 col-6 mb-4">
                 <h3 class="text-primary fw-bold">100%</h3>
@@ -211,6 +228,11 @@ Real Madrid Shop - Official Merchandise
                     <a href="{% url 'main:register' %}" class="btn btn-light btn-lg me-2">Get Started</a>
                     <a href="{% url 'main:login' %}" class="btn btn-outline-light btn-lg">Login</a>
                 {% endif %}
+                
+            <button
+              onclick="showToast('Sample Title', 'This is a sample message for the toast notification.')">
+              Click to Show Toast
+            </button>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 # Link yang sudah di deploy
 Aplikasi Football Shop
 https://pbp.cs.ui.ac.id/ghalen.cakra/realmadridshop
+# Tugas 1
 # 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 Saya mengimplementasikan checklist dengan langkah-langkah berikut. Pertama, saya membuat virtual environment dan menginstall dependensi utama, serta menambahkan file .env dan .env.prod untuk memisahkan konfigurasi development dan production. Selanjutnya, saya membuat proyek Django baru dengan startproject dan aplikasi main dengan startapp, lalu mendaftarkannya pada settings.py. Model Product dibuat di models.py dengan atribut yang diminta, kemudian saya melakukan migrasi database dan mendaftarkan model ke admin agar mudah diuji. Pada views.py, saya menambahkan fungsi yang menampilkan nama aplikasi, nama, kelas, serta daftar produk, dan dipetakan melalui urls.py serta ditampilkan dengan template HTML. Setelah berhasil diuji di server lokal, saya menyiapkan deployment dengan menambahkan requirements.txt, Dockerfile, serta memastikan settings.py membaca konfigurasi dari variabel lingkungan. Seluruh perubahan dicatat dengan Git, termasuk menambahkan .gitignore untuk menjaga kebersihan repositori. Terakhir, saya melakukan push ke GitHub dan deploy ke PWS sesuai instruksi hingga aplikasi dapat diakses secara publik.
 
@@ -174,6 +175,7 @@ Terakhir, saya menghubungkan model News dengan User. Di models.py saya menambahk
 
 Setelah semua langkah selesai, saya menjalankan server Django dan menguji proses pendaftaran, login, logout, serta pembatasan akses. Hasilnya, setiap akun hanya dapat melihat berita yang dibuat sendiri, cookie last_login tercatat dan terhapus sesuai alur.
 
+# Tugas 5
 # 1 Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 Pertama, saya mempelajari urutan prioritas CSS selector untuk memastikan tampilan halaman web sesuai dengan desain yang diinginkan. Dalam CSS, prioritas selector ditentukan berdasarkan spesifisitas dan urutan penulisan. Selector inline memiliki prioritas tertinggi, diikuti oleh ID selector (#id), class, attribute, dan pseudo-class selector (.class, [attribute], :hover), kemudian selector tipe elemen (div, p, h1). Jika terjadi konflik, selector yang ditulis terakhir akan diterapkan. Saya memahami hal ini untuk mencegah konflik styling ketika menggunakan banyak class atau framework CSS sekaligus.
 
@@ -190,3 +192,28 @@ lexbox digunakan untuk membuat elemen sebaris atau kolom yang fleksibel, misalny
 Dalam implementasinya secara step-by-step, pertama saya membuat virtual environment dan menginstal Django. Setelah itu, saya mengaktifkan django.contrib.auth dan django.contrib.sessions untuk fitur autentikasi dan manajemen sesi. Saya membuat model untuk produk dengan field yang sesuai dan menambahkan UUID sebagai primary key untuk keamanan. Selanjutnya, saya membuat template HTML untuk halaman login, register, daftar produk, detail produk, tambah produk, dan edit produk.
 
 Saya menambahkan styling dan layout menggunakan Bootstrap, memanfaatkan class utility untuk margin, padding, border, serta grid system untuk layout responsif. Saya juga memanfaatkan komponen Bootstrap seperti card, form-control, dan btn untuk konsistensi tampilan dan interaksi. Terakhir, saya melakukan pengujian pada berbagai ukuran layar untuk memastikan semua halaman tetap responsif dan user-friendly.
+
+# Tugas 6
+# 1. Apa perbedaan antara synchronous request dan asynchronous request?
+Pada dasarnya, synchronous request adalah mekanisme komunikasi antara client dan server yang berjalan secara berurutan. Ketika client mengirimkan permintaan, halaman akan menunggu hingga server mengembalikan respon sebelum melanjutkan aktivitas lain. Hal ini membuat proses menjadi terblokir (blocking).
+Sedangkan asynchronous request memungkinkan client mengirim permintaan tanpa harus menunggu respon dari server untuk melanjutkan proses lain. Dalam konteks web, hal ini dilakukan menggunakan AJAX (Asynchronous JavaScript and XML), sehingga pengguna tetap dapat berinteraksi dengan halaman tanpa perlu melakukan reload secara keseluruhan.
+
+# 2. Bagaimana AJAX bekerja di Django (alur request–response)?
+Ketika user melakukan suatu aksi, misalnya menekan tombol “Simpan”, JavaScript akan mengeksekusi fungsi fetch() atau XMLHttpRequest() untuk mengirim data ke endpoint Django tanpa me-reload halaman.
+Data tersebut dikirim melalui metode POST atau GET ke view Django yang telah dikonfigurasi. Di sisi backend, Django memproses data tersebut (misalnya menyimpan ke database), kemudian mengembalikan respon dalam format JSON. Setelah respon diterima, JavaScript pada sisi client akan menangani hasilnya — misalnya menampilkan notifikasi sukses, memperbarui tampilan data, atau menutup modal form.
+Alur ini memastikan komunikasi dua arah antara frontend dan backend berjalan cepat dan efisien tanpa membebani proses rendering halaman utama.
+
+# 3. Apa keuntungan menggunakan AJAX dibandingkan render biasa di Django?
+Pertama, AJAX memungkinkan partial update — artinya hanya elemen tertentu di halaman yang diperbarui tanpa memuat ulang seluruh halaman. Hal ini mengurangi waktu respon dan meningkatkan efisiensi.
+Kedua, penggunaan AJAX dapat meningkatkan performa aplikasi karena pertukaran data lebih ringan dibandingkan memuat ulang template HTML secara penuh.
+Ketiga, dari sisi pengguna, transisi halaman terasa lebih mulus dan interaktif sehingga memberikan pengalaman penggunaan yang lebih modern dan responsif.
+
+# 4. Bagaimana cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django?
+Langkah pertama yang saya lakukan adalah memastikan setiap permintaan AJAX yang dikirimkan memiliki CSRF token. Django sudah menyediakan mekanisme ini secara otomatis melalui {% csrf_token %} di template HTML dan middleware CsrfViewMiddleware. Token tersebut wajib dikirim bersama permintaan AJAX untuk mencegah serangan Cross-Site Request Forgery.
+Selain itu, saya juga menggunakan sistem autentikasi bawaan Django (django.contrib.auth) untuk menangani proses verifikasi dan penyimpanan data pengguna. Password disimpan dalam bentuk hashed, bukan teks biasa, untuk menjaga kerahasiaannya.
+Terakhir, respon dari AJAX tidak menampilkan informasi sensitif, melainkan hanya status sukses atau gagal agar tidak memberikan petunjuk berlebih kepada pihak yang tidak berwenang.
+
+# 5. Bagaimana AJAX mempengaruhi pengalaman pengguna (User Experience) pada website?
+Dari sisi User Experience (UX), penerapan AJAX memiliki dampak positif yang signifikan. Pengguna tidak perlu menunggu proses reload halaman penuh setiap kali melakukan aksi seperti menambah data, menghapus, atau memperbarui informasi. Semua dilakukan secara dinamis dan real-time.
+Hal ini membuat interaksi terasa lebih cepat, efisien, dan responsif. Selain itu, penggunaan notifikasi atau toast message berbasis AJAX juga meningkatkan kejelasan umpan balik terhadap tindakan pengguna.
+Secara keseluruhan, implementasi AJAX membantu menciptakan pengalaman pengguna yang lebih baik, modern, dan sesuai dengan standar aplikasi web interaktif saat ini.

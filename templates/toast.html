@@ -1,0 +1,18 @@
+{% load static %}
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="toast-component" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body d-flex align-items-center">
+                <span id="toast-icon" class="me-3 fs-5"></span>
+                <div>
+                    <h6 class="mb-1 fw-bold" id="toast-title">This is a Sample Title</h6>
+                    <p class="mb-0 text-muted small" id="toast-message">This is a Sample Message</p>
+                </div>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/toast.js' %}"></script>

@@ -5,7 +5,9 @@
       <!-- Brand -->
       <div class="flex items-center">
         <h1 class="text-xl font-semibold text-gray-900">
-          <span class="text-green-600">Real Madrid Shop</span> Product
+          <a href="{% url 'main:show_main' %}" class="hover:text-green-700 transition-colors">
+            <span class="text-green-600">Madrid-G Shop</span> Product
+          </a>
         </h1>
       </div>
 
@@ -15,6 +17,12 @@
            class="text-gray-600 hover:text-gray-900 font-medium transition-colors {% if request.path == '/' %}text-blue-600 font-bold{% endif %}">
           Home
         </a>
+
+        <a href="{% url 'main:show_main' %}" 
+           class="text-gray-600 hover:text-gray-900 font-medium transition-colors {% if request.resolver_match.url_name == 'show_main' %}text-blue-600 font-bold{% endif %}">
+          Product
+        </a>
+
         <a href="{% url 'main:create_product' %}" 
            class="text-gray-600 hover:text-gray-900 font-medium transition-colors {% if request.resolver_match.url_name == 'create_product' %}text-blue-600 font-bold{% endif %}">
           Create Product
@@ -68,6 +76,10 @@
         <a href="/" 
            class="block text-gray-600 hover:text-gray-900 font-medium py-3 transition-colors {% if request.path == '/' %}text-blue-600 font-bold{% endif %}">
           Home
+        </a>
+        <a href="{% url 'main:show_main' %}" 
+           class="block text-gray-600 hover:text-gray-900 font-medium py-3 transition-colors {% if request.resolver_match.url_name == 'show_main' %}text-blue-600 font-bold{% endif %}">
+          Product
         </a>
         <a href="{% url 'main:create_product' %}" 
            class="block text-gray-600 hover:text-gray-900 font-medium py-3 transition-colors {% if request.resolver_match.url_name == 'create_product' %}text-blue-600 font-bold{% endif %}">

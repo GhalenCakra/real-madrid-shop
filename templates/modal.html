@@ -1,0 +1,116 @@
+<!-- Modal -->
+<div id="crudModal" class="d-none position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="z-index: 1050; background-color: rgba(0,0,0,0.5)">
+  <div id="crudModalContent" class="bg-white rounded shadow-lg w-100" style="max-width: 500px; max-height: 90vh; overflow-y: auto">
+    <!-- Modal header -->
+    <div class="d-flex align-items-center justify-content-between p-4 border-bottom">
+      <div>
+        <h3 class="h5 fw-semibold text-dark mb-1">
+          Create New Product
+        </h3>
+        <p class="text-muted small mb-0">Share your football product and stories with the community</p>
+      </div>
+      <button type="button" class="btn-close" onclick="hideModal()"></button>
+    </div>
+
+   <div class="mb-4">
+    <h1 class="h2 fw-bold text-dark mb-2">Latest Football Product</h1>
+    <p class="text-muted">Stay updated with the latest football product</p>
+   </div>
+
+    <!-- Modal body -->
+    <div class="px-4 py-3">
+      <form id="productForm">
+        <div class="mb-3">
+          <label for="title" class="form-label">Name</label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="Enter product title" required>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" name="description" rows="3" class="form-control" placeholder="Enter product description" required></textarea>
+        </div>
+        <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" id="price" name="price" class="form-control" placeholder="Enter product price" required>
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" id="stock" name="stock" class="form-control" placeholder="Enter product stock" required>
+        </div>
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" id="brand" name="brand" class="form-control" placeholder="Enter product brand">
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select id="category" name="category" class="form-select" required>
+            <option value="">Choose a category</option>
+            <option value="jersey">Jersey</option>
+            <option value="shoes">Shoes</option>
+            <option value="accessory">Accessories</option>
+            <option value="merch">Merchandise</option>
+            <option value="ball">Ball</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="thumbnail" class="form-label">Thumbnail URL</label>
+          <input type="url" id="thumbnail" name="thumbnail" class="form-control" placeholder="https://example.com/image.jpg">
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input id="is_featured" name="is_featured" type="checkbox" class="form-check-input">
+            <label for="is_featured" class="form-check-label">Featured Product</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Modal footer -->
+    <div class="d-flex flex-column flex-sm-row gap-3 p-4 border-top">
+      <button type="button" id="cancelButton" class="btn btn-outline-secondary order-2 order-sm-1" onclick="hideModal()">Cancel</button>
+      <button type="submit" id="submitProduct" form="productForm" class="btn btn-success">Publish Product</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showModal() {
+    const modal = document.getElementById('crudModal');
+    modal.classList.remove('d-none');
+    modal.classList.add('d-flex');
+}
+
+function hideModal() {
+    const modal = document.getElementById('crudModal');
+    modal.classList.remove('d-flex');
+    modal.classList.add('d-none');
+}
+
+// Close modal ketika klik di luar content
+document.getElementById('crudModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideModal();
+    }
+});
+
+ async function addProductEntry() {
+    await fetch("{% url 'main:add_product_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#productForm')),
+    })
+
+    document.getElementById("productForm").reset();
+    hideModal();
+      
+    // Show toast notification
+    showToast('Product added successfully!', '', 'success');
+
+    // Dispatch custom event to notify main.html about new data
+    document.dispatchEvent(new CustomEvent('productAdded'));
+
+    return false;
+  }
+    document.getElementById("productForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    addProductEntry();
+})
+
+</script>
