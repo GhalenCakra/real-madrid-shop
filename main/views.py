@@ -17,8 +17,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.html import strip_tags
 
-
-@login_required(login_url='/login')
 def landing_page(request):
     """Landing page view"""
     featured_products = Product.objects.all().order_by('-created_at')[:6]
@@ -189,6 +187,7 @@ def delete_product(request, id):
     product = get_object_or_404(Product, pk=id)
     product.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
 @csrf_exempt
 @require_POST
 def add_product_entry_ajax(request):
