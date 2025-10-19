@@ -22,7 +22,7 @@ def landing_page(request):
     featured_products = Product.objects.all().order_by('-created_at')[:6]
     
     context = {
-        'name': 'AMTB',
+        'name': 'Ghalen',
         'npm': '2406437306',
         'class': 'PBP B',
         'last_login': request.COOKIES.get('last_login', 'Never'),
